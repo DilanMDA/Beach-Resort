@@ -5,7 +5,7 @@ const RoomContext = React.createContext(undefined);
 
 class RoomProvider extends Component {
     //initial state
-    
+
     state = {
         rooms: [],
         sortedRooms: [],
@@ -17,7 +17,15 @@ class RoomProvider extends Component {
     //getData by lifecycle method start
 
     componentDidMount() {
+        // this.getData
         let rooms = this.formatData(items);
+        let featuredRooms = rooms.filter(room => room.feature === true);
+        this.setState({
+            rooms,
+             featuredRooms,
+             sortedRooms: rooms,
+             loading: false
+        });
         console.log(rooms);
     }
 
