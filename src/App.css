@@ -130,6 +130,8 @@ h6 {
 }
 
 .nav-icon {
+    top: auto;
+    right: auto;
     font-size: 1.5rem;
     color: var(--primaryColor);
 }
