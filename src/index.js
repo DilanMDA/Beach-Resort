@@ -8,7 +8,6 @@ import { RoomProvider} from './context/context';
  
 ReactDOM.render(
   <RoomProvider>
-
   < Router>
     <App />
   </ Router>
