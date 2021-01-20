@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {RoomContext} from '../context/context';
+import Loading from './Loading';
+
 export default class FeaturedRooms extends Component {
     static contextType = RoomContext;
     render() {
@@ -8,7 +10,8 @@ export default class FeaturedRooms extends Component {
         
         return (
             <div>
-               from FeaturedRooms 
+               from FeaturedRooms
+               <Loading/> 
             </div>
         )
     }
