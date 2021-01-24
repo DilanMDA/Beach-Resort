@@ -2,13 +2,14 @@ import React from 'react'
 import { useContext } from 'react';
 import { RoomContext } from '../context/context';
 import Title from '../components/Title';
-// get all unique values
+
+//get all unique values
 const getUnique = (items, value) => {
-    return [...new Set(items.map(item => item[value]))]
+    return [...new Set(items.map(item => item[value]))];
 }
+
 export default function RoomFilter({ rooms }) {
     const context = useContext(RoomContext);
-    console.log(context);
     const {
         handleChange,
         type,
@@ -19,29 +20,33 @@ export default function RoomFilter({ rooms }) {
         minSize,
         maxSize,
         breakfast,
-        pets
+        pets,
     } = context;
-    //get unique types
+
+    // get unique types
     let types = getUnique(rooms, 'type');
-    //add all
+
+    // add all
     types = ['all', ...types];
-    // map to jsx
+
+    //map to JSX
     types = types.map((item, index) => {
-        return (
-            <option value={item} key={index}> {item}</option>
-        );
+        return <option value={item} key={index}>{item}</option>;
     })
 
+
     return (
-        <section className='filter-container'>
+        <section className="filter-container">
             <Title title='search rooms' />
             <form className="filter-form">
-                {/* {select type} */}
+                {/*  select type*/}
                 <div className="form-group">
-                    <label htmlFor="type"> room type </label>
+                    <label htmlFor="type">
+                        room type
+                    </label>
                     <select
                         name="type"
-                        id="type"
+                         id="type"
                         value={type}
                         className='form-control'
                         onChange={handleChange}
@@ -50,8 +55,9 @@ export default function RoomFilter({ rooms }) {
                     </select>
                 </div>
 
-                {/* {end select type} */}
+                {/* end of select type */}
             </form>
         </section>
+
     );
 }
