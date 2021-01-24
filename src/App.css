@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-:root {
+ :root {
     --primaryColor: #af9a7d;
     --mainWhite: #fff;
     --offWhite: #f7f7f7;
@@ -130,8 +130,6 @@ h6 {
 }
 
 .nav-icon {
-    top: auto;
-    right: auto;
     font-size: 1.5rem;
     color: var(--primaryColor);
 }
@@ -224,7 +222,7 @@ h6 {
 }
 
 .banner div {
-    width: 15rem;
+    width: 10rem;
     height: 5px;
     background: var(--primaryColor);
     margin: 1.7rem auto;
@@ -311,7 +309,6 @@ h6 {
 
 .services h6 {
     letter-spacing: var(--mainSpacing);
-    text-transform: capitalize;
 }
 
 .services p {
@@ -566,7 +563,7 @@ h6 {
 }
 
 
-/* end of roomslist */
+/* end of roomlist */
 
 
 /*  rooms filter*/
@@ -632,4 +629,4 @@ h6 {
 }
 
 
-/* end of rooms fitler*/
+/* end of rooms filter*/
