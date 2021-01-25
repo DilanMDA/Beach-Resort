@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import items from '../data';
+import Client from '../Contentful';
+// import items from '../data';
+  
 const RoomContext = React.createContext(undefined);
 //<RoomContext.provider value={'hello'}></RoomContext.provider>
 
@@ -20,28 +22,44 @@ class RoomProvider extends Component {
         maxSize: 0,
         breakfast: false,
         pets: false,
+    }
 
+    // get Data
+    getData =  async () =>{
+        try{
+
+            let response = await Client.getEntries({
+                content_type: "beachResort",
+                // order: 'sys.createdAt'
+                order : "fields.price"
+            });
+            let rooms = this.formatData(response.items);
+            let featuredRooms = rooms.filter((room) => room.featured === true);
+            let maxPrice = Math.max(...rooms.map(item => item.price));
+            let maxSize = Math.max(...rooms.map(item => item.size));
+    
+            this.setState({
+                rooms,
+                featuredRooms,
+                sortedRooms: rooms,
+                loading: false,
+                price: maxPrice,
+                maxPrice,
+                maxSize,
+    
+            });
+
+        }
+        catch(error){
+            console.log(error);
+            
+        }
     }
 
     //getData by lifecycle method start
-
     componentDidMount() {
-        // this.getData
-        let rooms = this.formatData(items);
-        let featuredRooms = rooms.filter((room) => room.featured === true);
-        let maxPrice = Math.max(...rooms.map(item => item.price));
-        let maxSize = Math.max(...rooms.map(item => item.size));
-
-        this.setState({
-            rooms,
-            featuredRooms,
-            sortedRooms: rooms,
-            loading: false,
-            price: maxPrice,
-            maxPrice,
-            maxSize,
-
-        });
+        this.getData();
+       
     }
     // RoomList data
     formatData(items) {
@@ -88,7 +106,7 @@ class RoomProvider extends Component {
         //all the rooms
         let tempRooms = [...rooms];
         // transform value
-        capacity = parseInt(capacity);
+        capacity = Math.floor(capacity);
 
 
         // filter by type
